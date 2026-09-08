@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:8000/api";
+const API = import.meta.env.VITE_API_URL || "http://localhost:8001/api";
 
 const skinOptions = [
   { value: "Mixte", label: "Mixte" },
@@ -90,7 +90,7 @@ export default function App() {
 
   async function checkApi() {
     try {
-      const response = await fetch("http://localhost:8000/health");
+      const response = await fetch(`${API.replace(/\/api\/?$/, "")}/health`);
       setApiOk(response.ok);
     } catch {
       setApiOk(false);
